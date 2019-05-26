@@ -17,12 +17,10 @@ public class Manager {
     private static final int KEEP_ALIVE_TIME = 50;
 
     private static Manager managerInstance = null;
-    //A Queue for Runnables
 
+    //Queue for all the Tasks
     final BlockingQueue<Runnable> WorkQueue;
     private final ThreadPoolExecutor threadPoolExecutor;
-
-
 
     static {
 
@@ -39,9 +37,7 @@ public class Manager {
 
     private Manager() {
 
-
         WorkQueue = new LinkedBlockingQueue<Runnable>();
-
         threadPoolExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE, MAX_POOL_SIZE, KEEP_ALIVE_TIME,
                 TimeUnit.MILLISECONDS, WorkQueue);
     }

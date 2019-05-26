@@ -13,7 +13,6 @@ public class Task implements Runnable {
     private String taskName;
     private Context mContext;
 
-    //Ui
     private ProgressBar progressBar;
     private TextView statusTextView;
 
@@ -25,13 +24,13 @@ public class Task implements Runnable {
         this.statusTextView = statusTextView;
     }
 
+    /*
+    Task to be done in background.
+     */
     @Override
     public void run() {
-        /*
-    Task to be done
-     */
-        int step = generateRandomStep();
 
+        int step = generateRandomStep();
 
         // Log.d("Task", String.valueOf(step));
         try {
@@ -40,7 +39,6 @@ public class Task implements Runnable {
                 i = i + step;
 
                 //Update Ui
-
                 final int finalI = i;
                 ((Activity) mContext).runOnUiThread(new Runnable() {
                     @Override
@@ -48,8 +46,6 @@ public class Task implements Runnable {
 
                         statusTextView.setText(String.valueOf(finalI) + "%");
                         progressBar.setProgress(finalI);
-
-
                     }
                 });
                 Thread.sleep(500);
@@ -61,6 +57,8 @@ public class Task implements Runnable {
         }
     }
 
+
+    //Generate a Random number that is a factor of 100
     private int generateRandomStep() {
 
         int multiple[] = new int[]{2,5, 10, 20, 25, 50};
