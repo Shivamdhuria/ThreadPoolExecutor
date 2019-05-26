@@ -1,5 +1,9 @@
 package elixer.com.threadpool;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -8,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class Manager {
 
 
-    private static final int CORE_POOL_SIZE = 10;
+    private static final int CORE_POOL_SIZE = 5;
     private static final int MAX_POOL_SIZE = 10;
     private static final int KEEP_ALIVE_TIME = 50;
 
@@ -17,6 +21,7 @@ public class Manager {
 
     final BlockingQueue<Runnable> WorkQueue;
     private final ThreadPoolExecutor threadPoolExecutor;
+
 
 
     static {
@@ -41,8 +46,8 @@ public class Manager {
                 TimeUnit.MILLISECONDS, WorkQueue);
     }
 
-    public void runTask(Runnable task) {
-        threadPoolExecutor.execute(task);
+    public void runTask(Runnable runnable) {
+        threadPoolExecutor.execute(runnable);
 
     }
 

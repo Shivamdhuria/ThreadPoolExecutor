@@ -35,11 +35,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         viewHolder.threadName.setText(mThreadNames.get(i));
+        final TextView statusTextView = viewHolder.statusTextView;
+        final ProgressBar progressBar = viewHolder.progressBar;
+
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, mThreadNames.get(i), Toast.LENGTH_SHORT).show();
-                runTask(i);
+                runTask("Thead No" + i, statusTextView, progressBar);
             }
         });
 
@@ -55,6 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView threadName;
         ProgressBar progressBar;
+        TextView statusTextView;
         LinearLayout parentLayout;
 
 
@@ -62,15 +66,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             threadName = itemView.findViewById(R.id.thread_name);
             progressBar = itemView.findViewById(R.id.progressBar);
+            statusTextView = itemView.findViewById(R.id.status);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 
-    private void runTask(int i) {
-        Task task = new Task("Task" + String.valueOf(i));
+    private void runTask(String taskName, TextView statusTextView, ProgressBar progressBar) {
+
+        Task task = new Task(mContext, taskName, progressBar, statusTextView);
         Manager.getManagerInstance().runTask(task);
     }
-
 
 
 }
