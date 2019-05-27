@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> mThreadNames;
+    private ArrayList<String> mTaskNames;
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mThreadNames) {
-        this.mThreadNames = mThreadNames;
+    public RecyclerViewAdapter(Context mContext, ArrayList<String> mTaskNames) {
+        this.mTaskNames = mTaskNames;
         this.mContext = mContext;
     }
 
@@ -34,15 +34,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        viewHolder.threadName.setText(mThreadNames.get(i));
+        viewHolder.taskNameTextView.setText(mTaskNames.get(i));
         final TextView statusTextView = viewHolder.statusTextView;
         final ProgressBar progressBar = viewHolder.progressBar;
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, mThreadNames.get(i), Toast.LENGTH_SHORT).show();
-                runTask("Thead No" + i, statusTextView, progressBar);
+                Toast.makeText(mContext, mTaskNames.get(i), Toast.LENGTH_SHORT).show();
+                runTask("Task No" + i, statusTextView, progressBar);
             }
         });
 
@@ -56,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView threadName;
+        TextView taskNameTextView;
         ProgressBar progressBar;
         TextView statusTextView;
         LinearLayout parentLayout;
@@ -64,7 +64,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            threadName = itemView.findViewById(R.id.thread_name);
+            taskNameTextView = itemView.findViewById(R.id.task_name);
             progressBar = itemView.findViewById(R.id.progressBar);
             statusTextView = itemView.findViewById(R.id.status);
             parentLayout = itemView.findViewById(R.id.parent_layout);
