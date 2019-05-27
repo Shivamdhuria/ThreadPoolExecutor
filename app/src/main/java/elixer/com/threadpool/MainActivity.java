@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> mThreadNames = new ArrayList<>();
-    private ArrayList<Integer> mThreadProgress = new ArrayList<>();
+    private ArrayList<String> mTaskNames = new ArrayList<>();
+    private ArrayList<Integer> mTaskProgress = new ArrayList<>();
 
 
     private static final String TAG = "DownloadFilesActivity";
@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initThreads();
+        initTaskNames();
         initRecyclerView();
 
     }
 
-    private void initThreads() {
+    private void initTaskNames() {
         for (int i = 1; i < 5; i++) {
-            mThreadNames.add("Thread" + i);
+            mTaskNames.add("Task Number " + i);
 
         }
     }
