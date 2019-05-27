@@ -51,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return mThreadNames.size();
+        return mTaskNames.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
