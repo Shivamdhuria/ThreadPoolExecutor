@@ -10,10 +10,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<String> mTaskNames = new ArrayList<>();
-    private ArrayList<Integer> mTaskProgress = new ArrayList<>();
 
-
-    private static final String TAG = "DownloadFilesActivity";
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
